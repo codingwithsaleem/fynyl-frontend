@@ -6,9 +6,6 @@ export default function Component() {
   return (
     <div
       className="min-h-screen relative overflow-hidden"
-      // style={{
-      //   background: "linear-gradient(135deg, #c8d5f7 0%, #b8c9f4 50%, #a8bdf1 100%)",
-      // }}
       style={{
         backgroundImage: "url('/images/home/bghero.png')",
         backgroundSize: "cover",

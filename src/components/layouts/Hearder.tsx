@@ -2,6 +2,7 @@ import React from 'react'
 import { BiMenu } from "react-icons/bi";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import Link from 'next/link';
 
 const Hearder = () => {
   return (
@@ -12,27 +13,29 @@ const Hearder = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
-              <a href="#" className="text-[#383838] hover:text-[#000000] transition-colors">
+              <Link href="#" className="text-[#383838] hover:text-[#000000] transition-colors">
                 How it work
-              </a>
-              <a href="#" className="text-[#383838] hover:text-[#000000] transition-colors">
+              </Link>
+              <Link href="#" className="text-[#383838] hover:text-[#000000] transition-colors">
                 About Us
-              </a>
-              <a href="#" className="text-[#383838] hover:text-[#000000] transition-colors">
+              </Link>
+              <Link href="#" className="text-[#383838] hover:text-[#000000] transition-colors">
                 Pricing
-              </a>
-              <a href="#" className="text-[#383838] hover:text-[#000000] transition-colors">
+              </Link>
+              <Link href="#" className="text-[#383838] hover:text-[#000000] transition-colors">
                 Contact Us
-              </a>
+              </Link>
             </nav>
 
             <div className="flex items-center space-x-4">
+              <Link href="/login">
               <Button
                 className="hidden md:block rounded-full px-6 py-2 text-white font-medium"
                 style={{ backgroundColor: "#8f8deb" }}
               >
                 Log In
               </Button>
+              </Link>
 
               {/* Mobile Menu */}
               <Sheet>
