@@ -63,13 +63,6 @@ export default function Component() {
             </div>
         </main>
       </div>
-      {/* <BackgroundWithImage
-        bgImage="/images/home/bghero.png"
-        sideImage="/images/home/aboutlogo.png"
-        sideImageAlt="About Us Image"
-      >
-        <AboutUsSection />
-      </BackgroundWithImage> */}
     </>
   );
 }

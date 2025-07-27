@@ -54,9 +54,9 @@ const ContactForm = () => {
 
   return (
     <Container>
-      <div>
+      <div className="py-10 flex flex-col justify-center items-center">
         {/* Header */}
-        <div className="text-center py-10">
+        <div className="text-center pb-10">
           <h1 className="font-montserrat text-[60px] font-semibold leading-[66px] not-italic mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#89DDF1] via-[#8F8DEB] to-[#6977C5]">
             Get In Touch
           </h1>
@@ -78,7 +78,7 @@ const ContactForm = () => {
                   <Input
                     id="fullName"
                     placeholder="Your Full Name"
-                    className="border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 bg-white/80"
+                    className="border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 bg-white/80 h-12"
                     {...register("fullName")}
                   />
                   {errors.fullName && (
@@ -98,7 +98,7 @@ const ContactForm = () => {
                   <Input
                     id="phoneNumber"
                     placeholder="1 324 443 4433"
-                    className="border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 bg-white/80"
+                    className="border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 bg-white/80 h-12"
                     {...register("phoneNumber")}
                   />
                   {errors.phoneNumber && (
@@ -122,7 +122,7 @@ const ContactForm = () => {
                     id="email"
                     type="email"
                     placeholder="someone@example.com"
-                    className="border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 bg-white/80"
+                    className="border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 bg-white/80 h-12"
                     {...register("email")}
                   />
                   {errors.email && (
@@ -146,8 +146,9 @@ const ContactForm = () => {
                       <Select
                         onValueChange={field.onChange}
                         value={field.value}
+                        
                       >
-                        <SelectTrigger className="border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 bg-white/80 w-full">
+                        <SelectTrigger className="border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 bg-white/80 min-h-12 w-full">
                           <SelectValue placeholder="Select Subject" />
                         </SelectTrigger>
                         <SelectContent>

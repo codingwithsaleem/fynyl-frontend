@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React, { ReactNode } from 'react'
 
 interface BackgroundWithImageProps {
@@ -12,9 +11,6 @@ interface BackgroundWithImageProps {
 const BackgroundWithImage = ({
   children,
   bgImage,
-  sideImage,
-  sideImageAlt = 'Side Image',
-  sideImageClassName = "w-[200px] h-auto absolute -left-20 top-1/2 -translate-y-1/2 translate-x-1/2 origin-center"
 }: BackgroundWithImageProps) => {
   return (
     <div
@@ -26,13 +22,6 @@ const BackgroundWithImage = ({
         backgroundRepeat: "no-repeat",
       }}
     >
-      <Image
-        src={sideImage}
-        alt={sideImageAlt}
-        width={500}
-        height={500}
-        className={sideImageClassName}
-      />
       {children}
     </div>
   )

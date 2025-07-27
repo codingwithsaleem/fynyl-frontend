@@ -163,4 +163,11 @@
   body {
     @apply bg-background text-foreground;
   }
+  h2 {
+    @apply text-2xl font-bold;
+    background: linear-gradient(90deg, #89DDF1 -24.85%, #8F8DEB 67.24%, #6977C5 99.71%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
