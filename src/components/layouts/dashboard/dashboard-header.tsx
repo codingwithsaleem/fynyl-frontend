@@ -9,29 +9,32 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 export default function DashboardHeader() {
   return (
     <header className="bg-white/90 backdrop-blur-sm shadow-sm border-b border-white/20">
-      <div className="flex items-center justify-between px-6 py-4">
-        <div className="flex items-center space-x-6">
-          <SidebarTrigger className="-ml-1" />
-          <Separator orientation="vertical" className="mr-2 h-4" />
-          <h3 className="text-xl font-semibold text-[#383838]">Dashboard</h3>
+      <div className="flex items-center justify-between px-3 sm:px-6 py-4">
+        <div className="flex items-center space-x-2 sm:space-x-6">
+          <SidebarTrigger className="-ml-1 mx-2 md:mx-0" />
+          <Separator orientation="vertical" className="mr-2 h-4 hidden sm:block" />
+          <h3 className="text-lg sm:text-xl font-semibold text-[#383838] hidden sm:block">Dashboard</h3>
         </div>
 
-        <div className="flex-1 max-w-md mx-8 hidden md:block">
-            <div className="relative flex justify-center items-center">
-            <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-[#8898f0] h-6 w-6" />
+        {/* Search - Hidden on mobile, shown on tablet+ */}
+        <div className="flex-1 max-w-md mx-4 sm:mx-8 hidden lg:block">
+          <div className="relative flex justify-center items-center">
+            <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-[#8898f0] h-5 w-5 sm:h-6 sm:w-6" />
             <Input
               type="text"
               placeholder="Search here..."
-              className="pl-10 h-12 text-2xl text-[#8898f0] placeholder:text-xl bg-primary/20 placeholder:text-primary"
+              className="pl-8 sm:pl-10 h-10 sm:h-12 text-lg sm:text-2xl text-[#8898f0] placeholder:text-sm sm:placeholder:text-xl bg-primary/20 placeholder:text-primary"
             />
-            </div>
+          </div>
         </div>
 
-        <div className="flex items-center space-x-4 gap-4">
+        <div className="flex items-center space-x-2 sm:space-x-4 gap-4">
+          {/* Notification Icon */}
           <div className="relative cursor-pointer hover:bg-accent rounded-full">
             <svg
-              width="60"
-              height="60"
+              width="40"
+              height="40"
+              className="md:w-[60px] md:h-[60px]"
               viewBox="0 0 60 60"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +45,7 @@ export default function DashboardHeader() {
                 cy="30"
                 r="29.25"
                 stroke="#8F8DEB"
-                stroke-width="1.5"
+                strokeWidth="1.5"
               />
               <path
                 d="M42.3964 28.6024C41.712 28.6024 41.1568 28.0426 41.1568 27.3525C41.1568 23.8463 39.803 20.5513 37.3447 18.0711C36.8601 17.5825 36.8601 16.7926 37.3447 16.3037C37.8294 15.815 38.6129 15.815 39.0976 16.3037C42.0246 19.2549 43.636 23.1789 43.636 27.3525C43.636 28.0426 43.0808 28.6024 42.3964 28.6024Z"
@@ -62,17 +65,18 @@ export default function DashboardHeader() {
               />
             </svg>
 
-            <span className="absolute top-0 left-5 h-4 w-4 bg-red-500 rounded-full text-[10px] text-white flex justify-center items-center">
+            <span className="absolute top-0 left-5 h-3 w-3 md:h-4 md:w-4 bg-red-500 rounded-full text-[8px] md:text-[10px] text-white flex justify-center items-center">
               9
             </span>
           </div>
 
-          <div className="flex items-center  border rounded-3xl pr-6 relative h-10  px-12 py-6 border-[#8F8DEB]">
-            <Avatar className="h-12 w-12 absolute right-36">
+          {/* User Profile - Original Desktop Design */}
+          <div className="flex items-center border rounded-2xl md:rounded-3xl  md:pr-6 relative h-8 md:h-10 px-4 md:px-12 py-3 md:py-6 md:border-[#8F8DEB]">
+            <Avatar className="h-8 w-8 md:h-12 md:w-12 absolute right-0 md:right-36">
               <AvatarImage src="https://github.com/shadcn.png" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
-            <span className="text-sm md:text-lg font-medium text-[#8F8DEB]">
+            <span className="text-xs md:text-lg font-medium text-[#8F8DEB] hidden sm:block">
               Devin Taylor
             </span>
           </div>

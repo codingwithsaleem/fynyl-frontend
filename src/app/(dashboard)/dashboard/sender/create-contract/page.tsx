@@ -1,9 +1,7 @@
-import React from 'react'
+import CreateContract from '@/components/dashboard/sender/create-contract'
 
-const page = () => {
-  return (
-    <div>page</div>
-  )
+const CreateContractPage = () => {
+  return <CreateContract />
 }
 
-export default page
+export default CreateContractPage

@@ -10,7 +10,11 @@ interface DashboardLayoutProps {
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#c8d5f7] via-[#b8c9f4] to-[#a8bdf1]">
+    <div className="min-h-screen" style={{
+        backgroundImage: "url('/images/auth/bg1.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}>
       <SidebarProvider>
         <div className="flex min-h-screen w-full">
           {/* Sidebar */}
