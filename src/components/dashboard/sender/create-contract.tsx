@@ -16,7 +16,7 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
-import { DatePicker } from "@/components/ui/date-picker";
+import { DateTimePicker } from "@/components/ui/datetime-picker";
 import {
   Form,
   FormControl,
@@ -31,7 +31,6 @@ import {
   Phone,
   MapPin,
   Globe,
-  Clock,
 } from "lucide-react";
 import {
   contractSchema,
@@ -62,8 +61,7 @@ const CreateContract = () => {
       receiverIndustry: "",
       receiverLogo: "",
       serviceOffering: "",
-      serviceDate: "",
-      serviceTime: "",
+      serviceDateTime: undefined,
       serviceLocation: "address",
       requireDeposit: "yes",
       refundPolicy: "",
@@ -410,7 +408,7 @@ const CreateContract = () => {
                     name="receiverEmail"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-[#8898f0] font-medium">
+                        <FormLabel className="text-[#8898f0] font-medium text-base">
                           Email Address
                         </FormLabel>
                         <FormControl>
@@ -435,7 +433,7 @@ const CreateContract = () => {
                     name="receiverPhone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-[#8898f0] font-medium">
+                        <FormLabel className="text-[#8898f0] font-medium text-base">
                           Phone Number
                         </FormLabel>
                         <FormControl>
@@ -459,7 +457,7 @@ const CreateContract = () => {
                     name="receiverAddress"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-[#8898f0] font-medium">
+                        <FormLabel className="text-[#8898f0] font-medium text-base">
                           Your Address
                         </FormLabel>
                         <FormControl>
@@ -483,7 +481,7 @@ const CreateContract = () => {
                     name="receiverWebsite"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-[#8898f0] font-medium">
+                        <FormLabel className="text-[#8898f0] font-medium text-base">
                           Website/URL
                         </FormLabel>
                         <FormControl>
@@ -507,7 +505,7 @@ const CreateContract = () => {
                     name="receiverIndustry"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-[#8898f0] font-medium">
+                        <FormLabel className="text-[#8898f0] font-medium text-base">
                           Industry
                         </FormLabel>
                         <Select
@@ -574,7 +572,7 @@ const CreateContract = () => {
                     name="serviceOffering"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-[#8898f0] font-medium">
+                        <FormLabel className="text-[#8898f0] font-medium text-base">
                           What service are you offering?
                         </FormLabel>
                         <Select
@@ -600,58 +598,26 @@ const CreateContract = () => {
                   />
 
                   {/* When is the service scheduled? */}
-                  <FormItem>
-                    <FormLabel className="text-[#8898f0] font-medium text-base">
-                      When is the service scheduled?
-                    </FormLabel>
-                    <div className="flex space-x-2">
-                      <FormField
-                        control={form.control}
-                        name="serviceDate"
-                        render={({ field }) => (
-                          <FormItem className="flex-1">
-                            <FormControl>
-                              <DatePicker
-                                value={
-                                  field.value
-                                    ? new Date(field.value)
-                                    : undefined
-                                }
-                                onChange={(date) =>
-                                  field.onChange(
-                                    date?.toISOString().split("T")[0]
-                                  )
-                                }
-                                placeholder="Pick a date"
-                                className="pl-10 h-15 border-[#e5e7eb] rounded-4xl focus:border-[#8898f0] focus:ring-[#8898f0] border-1 placeholder:text-lg text-lg"
-                              />
-                            </FormControl>
-                            <FormMessage className="text-red-500 text-xs" />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="serviceTime"
-                        render={({ field }) => (
-                          <FormItem className="flex-1">
-                            <FormControl>
-                              <div className="relative">
-                                <Clock className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#8898f0] h-5 w-5" />
-                                <Input
-                                  {...field}
-                                  type="time"
-                                  placeholder="11:00 AM"
-                                  className="pl-10 h-15 border-[#e5e7eb] rounded-4xl focus:border-[#8898f0] focus:ring-[#8898f0] border-1 placeholder:text-lg text-lg"
-                                />
-                              </div>
-                            </FormControl>
-                            <FormMessage className="text-red-500 text-xs" />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                  </FormItem>
+                  <FormField
+                    control={form.control}
+                    name="serviceDateTime"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-[#8898f0] font-medium text-base">
+                          When is the service scheduled?
+                        </FormLabel>
+                        <FormControl>
+                          <DateTimePicker
+                            value={field.value}
+                            onChange={field.onChange}
+                            placeholder="MM/DD/YYYY hh:mm aa"
+                            className="w-full"
+                          />
+                        </FormControl>
+                        <FormMessage className="text-red-500 text-xs" />
+                      </FormItem>
+                    )}
+                  />
 
                   {/* Where will it take place? */}
                   <FormField

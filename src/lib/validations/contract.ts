@@ -24,8 +24,9 @@ export const contractSchema = z.object({
 
   // Terms and Conditions
   serviceOffering: z.string().min(1, "Please select a service"),
-  serviceDate: z.string().min(1, "Please select a service date"),
-  serviceTime: z.string().min(1, "Please select a service time"),
+  serviceDateTime: z.date({
+    required_error: "Please select a service date and time",
+  }),
   serviceLocation: z.enum(["address", "virtual"], {
     required_error: "Please select a service location type",
   }),
