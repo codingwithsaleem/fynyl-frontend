@@ -748,6 +748,7 @@ const CreateContract = () => {
                     Save Contract
                   </Button> */}
                   <Button
+                    variant="myCustomButton1"
                     type="submit"
                     disabled={isLoading}
                     className="w-full md:w-auto px-6 py-6 bg-gradient-to-r from-[#8F8DEB] to-[#6977C5] hover:opacity-90 transition-opacity duration-300 text-white font-medium rounded-full"

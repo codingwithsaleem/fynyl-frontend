@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -20,6 +19,7 @@ import { z } from "zod";
 import LogoSvg from "@/utils/svgs/LogoSvg";
 import BackgroundWhiteLogoSvg from "@/utils/svgs/BackgroundWhiteLogoSvg";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const verifyEmailSchema = z.object({
   pin: z.string().min(4, {
@@ -31,6 +31,9 @@ type VerifyEmailFormData = z.infer<typeof verifyEmailSchema>;
 
 export default function VerifyEmailForm() {
   const [isLoading, setIsLoading] = useState(false);
+  const [countdown, setCountdown] = useState(60);
+  const [canResend, setCanResend] = useState(false);
+  const [email, setEmail] = useState<string>("");
 
   const form = useForm<VerifyEmailFormData>({
     resolver: zodResolver(verifyEmailSchema),
@@ -38,6 +41,35 @@ export default function VerifyEmailForm() {
       pin: "",
     },
   });
+
+  // Countdown effect
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    if (countdown > 0 && !canResend) {
+      interval = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev <= 1) {
+            setCanResend(true);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [countdown, canResend]);
+
+  // Get email from localStorage on component mount
+  useEffect(() => {
+    const storedEmail = localStorage.getItem("resetEmail");
+    if (storedEmail) {
+      setEmail(storedEmail);
+    }
+  }, []);
 
   const onSubmit = async (data: VerifyEmailFormData) => {
     setIsLoading(true);
@@ -54,8 +86,13 @@ export default function VerifyEmailForm() {
   };
 
   const handleResendCode = () => {
-    console.log("Resend code");
-    // Handle resend code
+    if (canResend) {
+      console.log("Resend code");
+      // Reset countdown and disable resend button
+      setCountdown(60);
+      setCanResend(false);
+      // Handle resend code API call here
+    }
   };
 
   return (
@@ -81,7 +118,12 @@ export default function VerifyEmailForm() {
               Sign in with Email
             </h3>
             <p className="text-[#9ca3af] text-sm">
-              ex@example.com <Link href="/signup/sender"><span className="text-[#8898f0] cursor-pointer underline">Change Email</span></Link>
+              {email || "ex@example.com"}{" "}
+              <Link href="/signup/sender">
+                <span className="text-[#8898f0] cursor-pointer underline">
+                  Change Email
+                </span>
+              </Link>
             </p>
           </div>
 
@@ -101,20 +143,20 @@ export default function VerifyEmailForm() {
                         onChange={field.onChange}
                       >
                         <InputOTPGroup className="gap-4">
-                          <InputOTPSlot 
-                            index={0} 
+                          <InputOTPSlot
+                            index={0}
                             className="w-16 h-16 !rounded-full border-2 border-[#8898f0] text-2xl font-semibold text-[#8898f0] bg-white/20 first:rounded-full"
                           />
-                          <InputOTPSlot 
-                            index={1} 
+                          <InputOTPSlot
+                            index={1}
                             className="w-16 h-16 !rounded-full border-2 border-[#8898f0] text-2xl font-semibold text-[#8898f0] bg-white/20"
                           />
-                          <InputOTPSlot 
-                            index={2} 
+                          <InputOTPSlot
+                            index={2}
                             className="w-16 h-16 !rounded-full border-2 border-[#8898f0] text-2xl font-semibold text-[#8898f0] bg-white/20"
                           />
-                          <InputOTPSlot 
-                            index={3} 
+                          <InputOTPSlot
+                            index={3}
                             className="w-16 h-16 !rounded-full border-2 border-[#8898f0] text-2xl font-semibold text-[#8898f0] bg-white/20 last:rounded-full"
                           />
                         </InputOTPGroup>
@@ -130,9 +172,14 @@ export default function VerifyEmailForm() {
                 <button
                   type="button"
                   onClick={handleResendCode}
-                  className="text-[#9ca3af] text-sm hover:text-[#8898f0] transition-colors cursor-pointer "
+                  disabled={!canResend}
+                  className={`text-sm transition-colors ${
+                    canResend 
+                      ? "text-[#8898f0] hover:text-[#6977C5] cursor-pointer" 
+                      : "text-[#9ca3af] cursor-not-allowed"
+                  }`}
                 >
-                  Resend Code
+                  {canResend ? "Resend Code" : `Resend Code in ${countdown}s`}
                 </button>
               </div>
 
@@ -145,6 +192,13 @@ export default function VerifyEmailForm() {
               >
                 {isLoading ? "Verifying..." : "Continue"}
               </Button>
+
+              {/* Success Message */}
+              <div className="text-center">
+                <p className="text-[#9ca3af] text-sm">
+                  OTP Sent Successfully
+                </p>
+              </div>
             </form>
           </Form>
         </div>

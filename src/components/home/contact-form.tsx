@@ -54,7 +54,7 @@ const ContactForm = () => {
 
   return (
     <Container>
-      <div className="py-10 flex flex-col justify-center items-center">
+      <div className="py-10 flex flex-col justify-center items-center min-h-screen">
         {/* Header */}
         <div className="text-center pb-10">
           <h1 className="font-montserrat text-[60px] font-semibold leading-[66px] not-italic mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#89DDF1] via-[#8F8DEB] to-[#6977C5]">

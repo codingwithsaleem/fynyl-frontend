@@ -1,11 +1,24 @@
+"use client";
+
 import React from "react";
 import { BiMenu } from "react-icons/bi";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Container from "../Container";
 
 const Hearder = () => {
+  const pathname = usePathname();
+
+  const navItems = [
+    { href: "/how-it-works", label: "How it Works" },
+    { href: "/about-us", label: "About Us" },
+    { href: "/pricing", label: "Pricing" },
+    { href: "/contact-us", label: "Contact Us" },
+  ];
+
+  const isActive = (href: string) => pathname === href;
   return (
     <Container>
       <header className="relative z-10">
@@ -17,37 +30,38 @@ const Hearder = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
-              <Link
-                href="/how-it-works"
-                className="text-[#383838] hover:text-[#000000] transition-colors"
-              >
-                How it work
-              </Link>
-              <Link
-                href="/about-us"
-                className="text-[#383838] hover:text-[#000000] transition-colors"
-              >
-                About Us
-              </Link>
-              <Link
-                href="/pricing"
-                className="text-[#383838] hover:text-[#000000] transition-colors"
-              >
-                Pricing
-              </Link>
-              <Link
-                href="/contact-us"
-                className="text-[#383838] hover:text-[#000000] transition-colors"
-              >
-                Contact Us
-              </Link>
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="relative group text-[#383838] transition-all duration-300 ease-in-out"
+                >
+                  <span
+                    className={`transition-all duration-300 ${
+                      isActive(item.href)
+                        ? "bg-gradient-to-r from-[#89DDF1] via-[#8F8DEB] to-[#6977C5] bg-clip-text text-transparent"
+                        : "group-hover:bg-gradient-to-r group-hover:from-[#89DDF1] group-hover:via-[#8F8DEB] group-hover:to-[#6977C5] group-hover:bg-clip-text group-hover:text-transparent"
+                    }`}
+                  >
+                    {item.label}
+                  </span>
+                  {/* Animated underline */}
+                  <span
+                    className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#89DDF1] via-[#8F8DEB] to-[#6977C5] transition-all duration-300 ease-in-out ${
+                      isActive(item.href)
+                        ? "w-full"
+                        : "w-0 group-hover:w-full"
+                    }`}
+                  />
+                </Link>
+              ))}
             </nav>
 
             <div className="flex items-center space-x-4">
               <Link href="/login">
                 <Button
+                  variant="myCustomButton1"
                   className="hidden md:block rounded-full px-6 py-2 text-white font-medium"
-                  style={{ backgroundColor: "#8f8deb" }}
                 >
                   Log In
                 </Button>
@@ -67,36 +81,37 @@ const Hearder = () => {
                     </div>
 
                     <nav className="flex flex-col space-y-6">
-                      <a
-                        href="#"
-                        className="text-[#383838] hover:text-[#000000] transition-colors text-lg"
-                      >
-                        How it work
-                      </a>
-                      <a
-                        href="#"
-                        className="text-[#383838] hover:text-[#000000] transition-colors text-lg"
-                      >
-                        About Us
-                      </a>
-                      <a
-                        href="#"
-                        className="text-[#383838] hover:text-[#000000] transition-colors text-lg"
-                      >
-                        Pricing
-                      </a>
-                      <a
-                        href="#"
-                        className="text-[#383838] hover:text-[#000000] transition-colors text-lg"
-                      >
-                        Contact Us
-                      </a>
+                      {navItems.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="relative group text-lg transition-all duration-300 ease-in-out"
+                        >
+                          <span
+                            className={`transition-all duration-300 ${
+                              isActive(item.href)
+                                ? "bg-gradient-to-r from-[#89DDF1] via-[#8F8DEB] to-[#6977C5] bg-clip-text text-transparent"
+                                : "text-[#383838] group-hover:bg-gradient-to-r group-hover:from-[#89DDF1] group-hover:via-[#8F8DEB] group-hover:to-[#6977C5] group-hover:bg-clip-text group-hover:text-transparent"
+                            }`}
+                          >
+                            {item.label}
+                          </span>
+                          {/* Animated underline for mobile */}
+                          <span
+                            className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#89DDF1] via-[#8F8DEB] to-[#6977C5] transition-all duration-300 ease-in-out ${
+                              isActive(item.href)
+                                ? "w-full"
+                                : "w-0 group-hover:w-full"
+                            }`}
+                          />
+                        </Link>
+                      ))}
                     </nav>
 
                     <div className="pt-6 border-t">
                       <Button
+                        variant="myCustomButton1"
                         className="w-full rounded-full px-6 py-3 text-white font-medium"
-                        style={{ backgroundColor: "#8f8deb" }}
                       >
                         Log In
                       </Button>

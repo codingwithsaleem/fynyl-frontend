@@ -1,12 +1,25 @@
+import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { CircleCheck } from "lucide-react";
 
 export default function Component() {
   return (
     <>
-      <div>
-        {/* Main Content */}
-        <main className="relative z-10  mx-auto px-6 font-montserrat flex justify-center items-center gap-4 py-10">
+    <Container>
+      <div className="relative w-full overflow-hidden min-h-screen flex items-center justify-between bg-cover bg-center">
+        {/* Video Background */}
+        <video
+          src="/videos/hero-section.webm"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute left-60 inset-0 w-full h-full object-cover z-0"
+          style={{ pointerEvents: "none" }}
+        />
+
+        {/* Overlay Content */}
+        <main className="relative z-10  px-6 font-montserrat flex  items-center gap-4 py-10">
           {/* Hero Text */}
           <div className=" mb-8">
             <h1 className="text-6xl md:text-7xl font-medium leading-tight mb-6 font-montserrat">
@@ -50,8 +63,8 @@ export default function Component() {
               Get Started
             </Button>
           </div>
-            <div>
-            <video
+          <div>
+            {/* <video
               src="/videos/hero-section.mp4"
               autoPlay
               loop
@@ -59,10 +72,11 @@ export default function Component() {
               playsInline
               className="rounded-lg shadow-lg max-w-full h-auto"
               style={{ maxHeight: 400 }}
-            />
-            </div>
+            /> */}
+          </div>
         </main>
       </div>
+      </Container>
     </>
   );
 }

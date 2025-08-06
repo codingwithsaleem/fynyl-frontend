@@ -148,6 +148,13 @@ export default function SignInForm() {
                 )}
               />
 
+              {/* Forgot Password */}
+              <div className="text-right">
+                <Link href="/forgot-password" className="text-[#8898f0] text-sm hover:underline">
+                  Forgot Password?
+                </Link>
+              </div>
+
               {/* Submit Button */}
               <Button
                 type="submit"
