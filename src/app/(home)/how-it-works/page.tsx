@@ -1,7 +1,10 @@
+import HowItWorks from "@/components/home/how-it-works"
 
 const page = () => {
   return (
-    <div>page</div>
+    <div>
+      <HowItWorks />
+    </div>
   )
 }
 

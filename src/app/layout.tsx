@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
+// import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 
 const montserrat = Montserrat({
@@ -30,15 +30,15 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider
+        {/* <ThemeProvider
           attribute="class"
           defaultTheme="light"
           enableSystem
           disableTransitionOnChange
-        >
+        > */}
             {children}
             <Toaster />
-        </ThemeProvider>
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );

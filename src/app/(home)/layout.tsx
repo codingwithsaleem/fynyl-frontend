@@ -18,10 +18,8 @@ const layout = ({ children }: { children: ReactNode }) => {
       </div>
       
       {/* Main Content with proper padding to account for fixed header */}
-      <main className="pt-24">
-        <div className="min-h-screen flex flex-col items-center justify-center px-4">
-          {children}
-        </div>
+      <main className="pt-16">
+        {children}
       </main>
     </div>
   );

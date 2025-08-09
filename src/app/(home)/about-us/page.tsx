@@ -5,7 +5,7 @@ import React from "react";
 const page = () => {
   return (
     <Container>
-        <div className="flex gap-6 items-center justify-center">
+        <div className="flex gap-6 items-center justify-center min-h-screen">
           <div className="space-y-6 w-full">
             <h2 className="text-4xl md:text-5xl font-medium leading-tight mb-6 font-montserrat">
               <span className="text-[#8898f0]">About Us &#45; Fynlyze</span>
