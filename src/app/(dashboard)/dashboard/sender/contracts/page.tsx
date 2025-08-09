@@ -1,8 +1,8 @@
 
-const page = () => {
-  return (
-    <div>page</div>
-  )
-}
+import Contracts from "@/components/dashboard/sender/contracts";
 
-export default page
+const ContractsPage = () => {
+  return <Contracts />;
+};
+
+export default ContractsPage;
